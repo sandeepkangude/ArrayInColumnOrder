@@ -1,0 +1,51 @@
+<app-nav></app-nav>
+<div class="container">
+  <div class="starter-template">
+    <form novalidate [formGroup]="myform">
+      <div class="row form-group">
+
+        <div class="col col-7" [ngClass]="{
+        'has-danger': input.invalid && (input.dirty || input.touched),
+        'has-success': input.valid && (input.dirty || input.touched)
+   }">
+          <label>Enter data</label>
+          <input type="text" class="form-control" formControlName="input" name="input">
+          <div class="form-control-feedback" *ngIf="input.invalid && input.dirty">
+            Please enter some input
+          </div>
+        </div>
+        <div class="col col-3" [ngClass]="{
+        'has-danger': select.invalid && (select.dirty || select.touched),
+        'has-success': select.valid && (select.dirty || select.touched)
+   }">
+          <label>Select number of columns</label>
+          <select class="form-control" formControlName="select" name="select">
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+        <div class="col col-2">
+          <label>&nbsp;</label>
+          <input type="button" value="DRAW" class="btn btn-primary btn-block" [disabled]="input.value.length <= 0 || select.value < 2 || (input.invalid && input.dirty) || (select.invalid && select.dirty)"
+            (click)="GenerateOutput()" />
+        </div>
+      </div>
+    </form>
+    <div class="row alert alert-danger" *ngIf="errorMsg !== ''">
+      <div class="col col-12">
+        {{errorMsg}}
+      </div>
+    </div>
+    <div>
+      <app-card [data]="result" [cols]="header"></app-card>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,20 @@
+<div class="row" *ngIf="result">
+  <div class="col col-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th *ngFor="let item of header">
+            {{item}}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of result">
+          <td *ngFor="let col of row">
+            {{col}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
